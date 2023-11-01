@@ -41,31 +41,49 @@ public class Television {
     }
 
     @Override
-    public int hashCode() {
-        /*
-         * This is a poorly written hash function, because it easily yields "hash collisions."
-         * A hash collision is when "different" objects have the same hash code (just by coincidence).
-         */
-        // return getBrand().length() + getVolume();
-        // Instead, we rely on Objects.hash() to give us a "scientifically correct" has function.
-        return Objects.hash(getBrand(), getVolume());
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (o == null || getClass() != o.getClass()) return false;
+        Television that = (Television) o;
+
+        return volume == that.volume && Objects.equals(brand, that.brand);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        boolean result = false;
-
-        // proceed only if 'obj' is really referencing a Television object
-        if (obj instanceof Television) {
-            // safely downcast 'obj' to more specific reference Television
-            Television other = (Television) obj;
-
-            // do the checks: business equality is defined by brand, volume being the same
-            result = Objects.equals(this.getBrand(), other.getBrand()) &&   // null-safe check
-                    this.getVolume() == other.getVolume();
-        }
-        return result;
+    public int hashCode() {
+        return Objects.hash(brand, volume);
     }
+
+    //    @Override
+//    public int hashCode() {
+        /*
+         * This is a poorly written hash function, because it easily yields "hash collisions."
+         * A hash collision is when "different" objects have the same hash code (just by coincidence).
+         * Given our poor initial has function below, "Sony" 50 and "LG" 52 both have hash codes
+         * of 54, as does "Samsung" 47. These are "different" objects per the equals() method, but have
+         * the same has code.
+         */
+        // return getBrand().length() + getVolume();
+        // Instead, we rely on Objects.hash() to give us a "scientifically correct" has function.
+//        return Objects.hash(getBrand(), getVolume());
+//    }
+//
+//    @Override
+//    public boolean equals(Object obj) {
+//        boolean result = false;
+//
+//        // proceed only if 'obj' is really referencing a Television object
+//        if (obj instanceof Television) {
+//            // safely downcast 'obj' to more specific reference Television
+//            Television other = (Television) obj;
+//
+//            // do the checks: business equality is defined by brand, volume being the same
+//            result = Objects.equals(this.getBrand(), other.getBrand()) &&   // null-safe check
+//                    this.getVolume() == other.getVolume();
+//        }
+//        return result;
+//    }
 
     @Override
     public String toString() {
