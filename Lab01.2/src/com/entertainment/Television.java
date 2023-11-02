@@ -55,22 +55,22 @@ public class Television implements Comparable<Television> {
         return Objects.hash(brand, volume);
     }
 
-    //    @Override
+//        @Override
 //    public int hashCode() {
-        /*
-         * This is a poorly written hash function, because it easily yields "hash collisions."
-         * A hash collision is when "different" objects have the same hash code (just by coincidence).
-         * Given our poor initial has function below, "Sony" 50 and "LG" 52 both have hash codes
-         * of 54, as does "Samsung" 47. These are "different" objects per the equals() method, but have
-         * the same has code.
-         */
-        // return getBrand().length() + getVolume();
-        // Instead, we rely on Objects.hash() to give us a "scientifically correct" has function.
+//        /*
+//         * This is a poorly written hash function, because it easily yields "hash collisions."
+//         * A hash collision is when "different" objects have the same hash code (just by coincidence).
+//         * Given our poor initial has function below, "Sony" 50 and "LG" 52 both have hash codes
+//         * of 54, as does "Samsung" 47. These are "different" objects per the equals() method, but have
+//         * the same has code.
+//         */
+//         return getBrand().length() + getVolume();
+//         // Instead, we rely on Objects.hash() to give us a "scientifically correct" has function.
 //        return Objects.hash(getBrand(), getVolume());
 //    }
-//
+
 //    @Override
-//    public boolean equals(Object obj) {
+//    public boolean equals (Object obj) {
 //        boolean result = false;
 //
 //        // proceed only if 'obj' is really referencing a Television object
@@ -85,14 +85,28 @@ public class Television implements Comparable<Television> {
 //        return result;
 //    }
 
+
+    /*
+     *
+     */
+    @Override
+    public int compareTo(Television other) {
+        int result = this.getBrand().compareTo(other.getBrand());
+
+        if (result == 0) {  //tied on brand, i.e., they have the same brand
+            result = Integer.compare(this.getVolume(), other.getVolume());
+        }
+        return result;
+    }
+
     @Override
     public String toString() {
         return getClass().getSimpleName() + " [brand=" + getBrand() + ", volume=" + getVolume() +
                 ", currentChannel=" + getCurrentChannel() + "]";
     }
 
-    @Override
-    public int compareTo(Television other) {
-        return CharSequence.compare(this.getBrand(), other.getBrand());
-    }
+//    @Override
+//    public int compareTo(Television other) {
+//        return CharSequence.compare(this.getBrand(), other.getBrand());
+//    }
 }
