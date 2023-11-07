@@ -33,7 +33,7 @@ public class EmployeeFactoryTest {
      * - in webapps, HTTP requests from browsers (e.g., a form submission) carry all values as strings
      */
     @Before
-    public void iit() {
+    public void init() {
         seMap = new HashMap<>();
         seMap.put("type", "SE");
         seMap.put("name", "Jackie");
