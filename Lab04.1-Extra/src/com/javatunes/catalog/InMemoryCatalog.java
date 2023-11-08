@@ -138,13 +138,13 @@ public class InMemoryCatalog implements Catalog {
      */
     public int numberInGenre(MusicCategory category) {
          return findByCategory(category).size();
-//        int result = 0;
-//        for (MusicItem item : catalogData) {
-//            if (item.getMusicCategory().equals(category)) {
-//                result ++;
-//            }
-//        }
-//        return result;
+        int result = 0;
+        for (MusicItem item : catalogData) {
+            if (item.getMusicCategory().equals(category)) {
+                result ++;
+            }
+        }
+        return result;
     }
 
 
