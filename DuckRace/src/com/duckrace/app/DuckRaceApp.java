@@ -22,19 +22,39 @@ public class DuckRaceApp {
         showBoard();
     }
 
-    private void updateBoard() {
-
+    private void updateBoard(int id, Reward reward) {
+        board.update(id, reward);
     }
 
     private Reward promptForReward() {
         Reward reward = null;
 
+        boolean validInput = false;
+        while (!validInput) {
+            System.out.print("Please enter [D]ebit card or [P]rizes: ");
+            String input = scanner.nextLine().trim().toUpperCase();
+            if (input.matches("D|P")) {
+                validInput = true;
+                reward = ("D".equals(input)) ? Reward.DEBIT_CARD : Reward.PRIZES;
+            }
+        }
         return reward;
     }
 
     private int promptForId() {
         int id = 0;
 
+        boolean validInput = false;
+        while (!validInput) {
+            System.out.print("Please enter id of the winner [1-" + board.maxId() + "]: ");   //TODO don't hardcode the 19
+            String input = scanner.nextLine().trim();
+            if (input.matches("\\d{1,2}")) {
+                id = Integer.parseInt(input);   // it's safe to do this now
+                if (1 <= id && id <= board.maxId()) {      // TODO: don't hardcode the 19
+                    validInput = true;
+                }
+            }
+        }
         return id;
     }
 
