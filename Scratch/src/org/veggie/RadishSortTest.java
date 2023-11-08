@@ -44,7 +44,7 @@ class RadishSortTest {
             public int compare(Radish r1, Radish r2) {
                 return Integer.compare(r1.getGuysOnTop(), r2.getGuysOnTop());
             }
-        })
+        });
         dump(radishes);
         System.out.println();
 
