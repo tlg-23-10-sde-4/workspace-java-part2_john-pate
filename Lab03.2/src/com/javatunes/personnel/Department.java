@@ -25,15 +25,15 @@ public class Department {
     }
 
     public void listEmployees() {
-        employees.forEach(emp -> System.out.println(emp));
+        employees.forEach(System.out::println); // emp -> sout(emp)
     }
 
     public void workEmployees() {
-        employees.forEach(emp -> emp.work());
+        employees.forEach(Employee::work);   // emp -> emp.work()
     }
 
     public void payEmployees() {
-        employees.forEach(emp -> emp.pay());
+        employees.forEach(Employee::pay);    // emp -> emp.pay()
     }
 
     // helper method to add an Employee to the collection
